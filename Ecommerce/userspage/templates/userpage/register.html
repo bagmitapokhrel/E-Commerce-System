@@ -1,0 +1,127 @@
+{% extends "layouts.html" %}
+
+{% block title %} Create Account | LUNIVA {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+{% include 'userpage/header.html' %}
+
+<style>
+    /* --- LUXURY REGISTRATION STYLING --- */
+    .register-section {
+        padding: 80px 0;
+        background-color: #ffffff;
+    }
+
+    .register-card {
+        border: 1px solid #e6e6e6; /* Clean border matching product cards */
+        border-radius: 0; /* Square edges for premium feel */
+        background: #ffffff;
+    }
+
+    .register-title {
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #000;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Form Typography & Style */
+    .register-card label {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        color: #666;
+        margin-bottom: 6px;
+    }
+
+    .register-card .form-control {
+        border-radius: 0;
+        border: 1px solid #e6e6e6;
+        padding: 10px 15px;
+        transition: border-color 0.3s ease;
+    }
+
+    .register-card .form-control:focus {
+        border-color: #d4af37; /* Gold focus accent */
+        box-shadow: none;
+    }
+
+    /* THE LUXURY BUTTON: Gold Outline -> Gold Fill */
+    .btn-register {
+        background: transparent !important;
+        border: 2px solid #d4af37 !important;
+        color: #d4af37 !important;
+        padding: 14px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 0;
+        width: 100%;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        display: block;
+        text-align: center;
+        text-decoration: none !important;
+    }
+
+    .btn-register:hover {
+        background: #d4af37 !important;
+        color: #ffffff !important;
+        box-shadow: 0 8px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .register-footer {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .register-footer a {
+        color: #d4af37;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+<div class="register-section">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                
+                <h2 class="register-title">Join Luniva</h2>
+                
+                {% for msg in messages %}
+                    <div class="alert {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}alert-success{% else %}alert-danger{% endif %} rounded-0 border-0">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+                
+                <div class="register-card shadow-sm p-4 p-md-5">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="mt-4">
+                            <input type="submit" class="btn-register" value="Create Account">
+                        </div>
+                    </form>
+
+                    <div class="register-footer">
+                        <p class="text-muted mb-1" style="font-size: 0.75rem;">Already a member?</p>
+                        <a href="/login">LOG IN TO YOUR ACCOUNT</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'userpage/footer.html' %}
+{% endblock %}

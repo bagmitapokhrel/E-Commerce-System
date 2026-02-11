@@ -1,0 +1,116 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+Update Profile 
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+{% include 'userpage/header.html' %}
+
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .profile-update-wrapper {
+        background-color: #f8f9fa;
+        min-height: 80vh;
+        padding: 50px 0;
+    }
+
+    .update-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+
+    .card-header-custom {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .card-header-custom i {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .form-container {
+        padding: 40px;
+    }
+
+    .btn-update {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-update:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        color: white;
+    }
+
+    /* Styling the Crispy Form inputs */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="profile-update-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                
+                <div class="update-card">
+                    <div class="card-header-custom">
+                        <i class="fas fa-user-edit"></i>
+                        <h3>Edit Your Profile</h3>
+                        <p class="mb-0">Keep your information up to date</p>
+                    </div>
+
+                    <div class="form-container">
+                        {% for msg in messages %}
+                        <div class="alert {% if msg.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+                            {{ msg }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            
+                            {{ form|crispy }}
+
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-update">
+                                    <i class="fas fa-save me-2"></i> Update Settings
+                                </button>
+                                <a href="{% url 'profile' %}" class="btn btn-light">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'userpage/footer.html' %}
+{% endblock %}

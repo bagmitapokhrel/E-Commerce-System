@@ -1,0 +1,125 @@
+{% extends "layouts.html" %}
+
+{% block title %} Login | LUNIVA {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+{% include 'userpage/header.html' %}
+
+<style>
+    /* --- LUXURY LOGIN STYLING --- */
+    .login-section {
+        padding: 100px 0;
+        background-color: #ffffff;
+    }
+
+    .login-card {
+        border: 1px solid #e6e6e6; /* Matches product card borders */
+        border-radius: 0; /* Sharp edges for luxury editorial look */
+        background: #ffffff;
+    }
+
+    .login-title {
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: #000;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    /* Crispy Form Customization */
+    .login-card label {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        color: #666;
+    }
+
+    .login-card .form-control {
+        border-radius: 0;
+        border: 1px solid #e6e6e6;
+        padding: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .login-card .form-control:focus {
+        border-color: #d4af37; /* Gold focus */
+        box-shadow: none;
+        outline: none;
+    }
+
+    /* THE LUXURY BUTTON: Gold Outline -> Gold Fill */
+    .btn-login {
+        background: transparent !important;
+        border: 2px solid #d4af37 !important;
+        color: #d4af37 !important;
+        padding: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 0;
+        width: 100%;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        display: block;
+        text-align: center;
+    }
+
+    .btn-login:hover {
+        background: #d4af37 !important;
+        color: #ffffff !important;
+        box-shadow: 0 8px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .login-footer-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-footer-links a {
+        color: #d4af37;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+</style>
+
+<div class="login-section">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                
+                <h2 class="login-title">Sign In</h2>
+                
+                {% for msg in messages %}
+                    <div class="alert {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}alert-success{% else %}alert-danger{% endif %} rounded-0 border-0">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+                
+                <div class="login-card shadow-sm p-4 p-md-5">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="mt-4">
+                            <input type="submit" class="btn-login" value="Login">
+                        </div>
+                    </form>
+
+                    <div class="login-footer-links">
+                        <p class="text-muted mb-1" style="font-size: 0.75rem;">Don't have an account?</p>
+                        <a href="/register">CREATE AN ACCOUNT</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'userpage/footer.html' %}
+{% endblock %}

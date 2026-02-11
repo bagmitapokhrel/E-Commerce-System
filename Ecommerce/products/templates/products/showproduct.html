@@ -1,0 +1,48 @@
+{% extends "admins/adminlayout.html" %}
+
+{% block title %}
+<title>Product List</title>
+{% endblock %}
+{%block main_content%}
+  {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% endif %}    
+             {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% endif %}    
+            {% endfor %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 text-center md-10">
+            <table class="table table-bordered table-striped">
+                <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock Quantity</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+    
+            {% for item in products %}
+            <tr>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.product_price }}</td>
+                <td>{{ item.stock_quantity }}</td>
+                <td><img src="/{{ item.product_image }}" alt="{{ item.product_name }}" width="100"></td>
+                <td>{{ item.product_description }}</td>
+                <td>{{ item.category.category_name }}</td>
+                <td>
+                    <a href="/products/updateproduct/{{ item.id }}" class="btn btn-primary" title="Edit product"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="/products/deleteproduct/{{ item.id }}" class="btn btn-danger" title="Delete product" onclick="return confirm('Are you sure want to delete this product?')"><i class="fa-solid fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        
+           </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

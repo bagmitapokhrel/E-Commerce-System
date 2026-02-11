@@ -1,0 +1,78 @@
+{% extends "layouts.html" %}
+{% block title %}
+My Profile
+{% endblock %}
+{% block main_content %}
+{% include 'userpage/header.html' %}
+<style>
+    .profile-bg { background: #f4f7f6; min-height: 100vh; padding: 40px 0; }
+    .profile-card { border: none; border-radius: 20px; background: #fff; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .profile-sidebar { background: #2d3436; color: white; padding: 40px 20px; text-align: center; }
+    .avatar-large { 
+        width: 120px; height: 120px; border-radius: 50%; border: 5px solid rgba(255,255,255,0.1);
+        margin-bottom: 20px; object-fit: cover;
+    }
+    .nav-pills-custom .nav-link { 
+        color: #636e72; border-radius: 10px; padding: 12px 20px; margin-bottom: 10px; 
+    }
+    .nav-pills-custom .nav-link.active { background: #ffc107; color: #000; font-weight: bold; }
+    .info-label { color: #b2bec3; font-size: 0.8rem; text-transform: uppercase; margin-top: 15px; }
+    .info-value { font-size: 1.1rem; color: #2d3436; font-weight: 500; }
+</style>
+
+<div class="profile-bg">
+    <div class="container">
+        <div class="row profile-card">
+            <div class="col-md-4 profile-sidebar">
+                <img src="/static/images/default-user.png" class="avatar-large">
+                <h4 class="mb-1">{{ user.get_full_name|default:user.username }}</h4>
+                <p class="text-warning">{{ user.email }}</p>
+                <hr class="border-secondary">
+                <div class="nav flex-column nav-pills nav-pills-custom">
+                    <button class="nav-link active" onclick="showTab('info')">Overview</button>
+                    <button class="nav-link" onclick="showTab('security')">Security</button>
+                    <a href="/updateprofile" class="nav-link">Edit Profile</a>
+                </div>
+            </div>
+            
+            <div class="col-md-8 p-5">
+                <div id="info-tab">
+                    <h2 class="mb-4">General Information</h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="info-label">Phone Number</div>
+                            <div class="info-value">{{ phone_number }}</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="info-label">Shipping Address</div>
+                            <div class="info-value">{{ address }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(tabName) {
+        // Hide all tabs first
+        document.getElementById('info-tab').style.display = 'none';
+        
+        // If you add a security tab later, you would hide it here too
+        // document.getElementById('security-tab').style.display = 'none';
+
+        // Show the selected tab
+        if (tabName === 'info') {
+            document.getElementById('info-tab').style.display = 'block';
+        }
+        
+        // Update button active states
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => link.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+</script>
+{% include 'userpage/footer.html' %}
+{% endblock %}
+

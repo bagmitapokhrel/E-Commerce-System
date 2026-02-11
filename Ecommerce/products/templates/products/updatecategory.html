@@ -1,0 +1,33 @@
+{% extends "admins/adminlayout.html" %}
+
+{% block title %}
+<title>Update Category</title>
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{%block main_content%}
+ <div class="container mt - 4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5">
+
+              {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% endif %}    
+             {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% endif %}    
+            {% endfor %}
+
+            <form method="post" action=""class="shadow p-3">
+                {% csrf_token %}
+                 {{ form|crispy }}
+                <div class="my-2">
+                    <input type="submit" class="btn btn-primary" value="Update Category">
+                </div>
+            </form>
+        </div>
+    </div>
+ </div>
+{% endblock %}
