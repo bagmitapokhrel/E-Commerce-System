@@ -59,3 +59,11 @@ def admin_home(request):
     }
 
     return render(request, "admins/dashboard.html", context)
+
+
+
+from userspage.models import Order 
+
+def admin_orders(request):
+    orders = Order.objects.all().order_by('-id')
+    return render(request, 'admins/orders.html', {'orders': orders})
