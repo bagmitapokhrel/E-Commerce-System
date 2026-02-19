@@ -77,8 +77,9 @@ h1, h2, h3, .product-name, .section-title span, .category-title {
 
 .category-list .list-group-item:hover,
 .category-list .list-group-item.active {
-  background: var(--lux-soft-gold) !important;
+  background: transparent;
   color: var(--lux-gold) !important;
+  border-left: 3px solid var(--lux-gold) !important;
   padding-left: 30px;
 }
 
