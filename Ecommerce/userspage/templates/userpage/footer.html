@@ -72,15 +72,19 @@
     padding-top: 2rem;
   }
 
+ /* Updated Social Icon Styling */
   .luniva-footer .social a {
-    margin-left: 16px;
-    font-size: 16px;
+    margin-left: 20px;
+    font-size: 20px; /* Bigger, more readable icons */
     color: #777;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
   }
 
   .luniva-footer .social a:hover {
     color: #D4AF37;
+    transform: translateY(-3px); /* Elegant lift effect */
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); /* Subtle gold glow */
   }
 </style>
 
@@ -128,12 +132,15 @@
 
     <!-- Bottom -->
     <div class="footer-divider d-flex flex-column flex-sm-row justify-content-between align-items-center">
-      <p class="mb-2 mb-sm-0">&copy; 2025 LUNIVA. All rights reserved.</p>
-      <div class="social">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Facebook">FB</a>
-      </div>
-    </div>
+  <p class="mb-2 mb-sm-0">&copy; 2026 LUNIVA. All rights reserved.</p>
+  <div class="social">
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
   </div>
+</div>
 </footer>
 <!-- ================== END FOOTER ================== -->
