@@ -67,3 +67,15 @@ from userspage.models import Order
 def admin_orders(request):
     orders = Order.objects.all().order_by('-id')
     return render(request, 'admins/orders.html', {'orders': orders})
+
+@login_required
+@admin_only
+def out_of_stock_list(request):
+    # Fetch only products where stock is 0 or less
+    low_stock_products = Product.objects.filter(stock_quantity__lte=0).order_by('product_name')
+    
+    context = {
+        'products': low_stock_products,
+        'count': low_stock_products.count()
+    }
+    return render(request, 'admins/out_of_stock.html', context)
