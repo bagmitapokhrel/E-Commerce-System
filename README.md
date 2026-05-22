@@ -1,6 +1,6 @@
-# Luniva Commerce System
+# E Commerce System
 
-Luniva Commerce is a full-stack, minimalist e-commerce system built to simulate a real online store experience. It includes both frontend and backend functionalities, payment integration, and an admin panel.
+This is a full-stack, minimalist e-commerce system built to simulate a real online store experience. It includes both frontend and backend functionalities, payment integration, and an admin panel.
 
 ## Features
 
