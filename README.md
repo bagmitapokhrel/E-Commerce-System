@@ -26,4 +26,4 @@ This is a full-stack, minimalist e-commerce system built to simulate a real onli
 ## Installation / How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Bebika3/luniva-commerce.git
+   git clone https://github.com/Bebika3/E-Commerece-System.git
