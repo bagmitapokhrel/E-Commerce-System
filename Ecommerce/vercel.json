@@ -8,7 +8,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "ecommerce/wsgi.py"
+      "dest": "Ecommerce/wsgi.py"
     }
   ]
 }
